@@ -12,7 +12,8 @@ class FlickrPress extends FlickrPress_Base {
 		// Pre-load Options
 		$this->load_options();
 		// Let's get started... This will hijack page requests for use of FlickrPress
-		add_action('template_redirect', array(&$this,'hijack_page'));
+		// Do before canonical_redirect to avoid skipping
+		add_action('template_redirect', array(&$this,'hijack_page'), 9);
 	}
 	// PHP 4 Constructor
 	function FlickrPress() {
