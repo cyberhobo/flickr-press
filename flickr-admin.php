@@ -52,7 +52,8 @@ class FlickrPress extends FlickrPress_Base {
 	
 	
 	function admin_menu() {
-		$hooks[] = add_submenu_page('options-general.php', 'FlickrPress Settings', 'Flickr Settings', 'administrator', 'flickr', array(&$this,'settings_page'));
+		$capability = apply_filters( 'flickrpress_admin_capability', 'administrator' );
+		$hooks[] = add_submenu_page('options-general.php', 'FlickrPress Settings', 'Flickr Settings', $capability, 'flickr', array(&$this,'settings_page'));
 		foreach ($hooks as $hook) {		add_action("load-$hook", array(&$this,'enqueue'));	}
 	}
 	
